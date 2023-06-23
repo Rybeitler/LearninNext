@@ -16,4 +16,20 @@ export const GET = async (request, {params}) => {
     }
 
     
+}
+
+export const DELETE = async (request, {params}) => {
+    const {id} = params
+
+    try{
+        await connect()
+
+        const post = await Post.findByIdAndDelete(id)
+
+        return new NextResponse("Post Deleted", {status:200})
+    }catch(err){
+        return new NextResponse('Db error', {status:500})
+    }
+
+    
 } 
